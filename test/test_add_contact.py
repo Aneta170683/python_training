@@ -12,12 +12,12 @@ def app(request):
 
 
 def test_add_contact(app):
-    app.login(username="admin", password="secret")
+    app.session_contact.login(username="admin", password="secret")
     app.create_contact(Contact(firstname="Anna", lastname="Test", title="kontakt", company="Testowa", address="Polna 1", mobile="111222333", email="test1@wp.pl"))
-    app.logout()
+    app.session_contact.logout()
 
 def test_add_empty_contact(app):
-    app.login(username="admin", password="secret")
+    app.session_contact.login(username="admin", password="secret")
     app.create_contact(Contact(firstname="", lastname="", title="", company="", address="", mobile="", email=""))
-    app.logout()
+    app.session_contact.logout()
 
