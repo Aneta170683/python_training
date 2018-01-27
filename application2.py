@@ -1,5 +1,6 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
 
+
 class Application2:
 
     def __init__(self):

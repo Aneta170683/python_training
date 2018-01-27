@@ -4,6 +4,7 @@ from contact import Contact
 from application2 import Application2
 
 
+
 @pytest.fixture
 def app(request):
     fixture = Application2()
