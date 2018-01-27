@@ -11,10 +11,6 @@ class Application2:
     def logout(self):
         wd = self.wd
         wd.find_element_by_link_text("Logout").click()
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").send_keys("\\undefined")
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").send_keys("\\undefined")
 
     def create_contact(self, contact):
         wd = self.wd
@@ -57,7 +53,6 @@ class Application2:
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("a")
         wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").send_keys("\\undefined")
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
