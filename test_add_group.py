@@ -8,7 +8,7 @@ def app(request):
     fixture = Application()
     request.addfinalizer(fixture.destroy)
     return fixture
-        
+
 def test_add_group(app):
     app.login(username="admin", password="secret")
     app.create_group(Group(name="test3", header="test3", footer="test3"))
