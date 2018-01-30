@@ -28,11 +28,8 @@ class test_dodanie_grupy(unittest.TestCase):
 
     def test_dodanie_pustej_grupy(self):
         wd = self.wd
-        self.otwarcie_strony_home_page(wd)
         self.logowanie(wd, username="admin", password="secret")
-        self.otwarcie_strony_z_grupami(wd)
         self.stworzenie_grupy(wd, Grupa(name="", header="", footer=""))
-        self.powrot_na_strone_z_grupami(wd)
         self.wylogowanie(wd)
 
     def wylogowanie(self, wd):
@@ -42,6 +39,7 @@ class test_dodanie_grupy(unittest.TestCase):
         wd.find_element_by_link_text("group page").click()
 
     def stworzenie_grupy(self, wd, grupa):
+        self.otwarcie_strony_z_grupami(wd)
         # wybranie karty dodania grupy
         wd.find_element_by_name("new").click()
         # wypełnienie karty z grupa
@@ -56,11 +54,13 @@ class test_dodanie_grupy(unittest.TestCase):
         wd.find_element_by_name("group_footer").send_keys(grupa.footer)
         # potwierdzenie dodania grupy
         wd.find_element_by_name("submit").click()
+        self.powrot_na_strone_z_grupami(wd)
 
     def otwarcie_strony_z_grupami(self, wd):
         wd.find_element_by_link_text("groups").click()
 
     def logowanie(self, wd, username, password):
+        self.otwarcie_strony_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
