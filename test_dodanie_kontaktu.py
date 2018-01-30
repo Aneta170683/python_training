@@ -18,10 +18,7 @@ class test_dodanie_kontaktu(unittest.TestCase):
     
     def test_dodanie_kontaktu(self):
         wd = self.wd
-
-        self.otwarcie_strony_home_page(wd)
         self.logowanie(wd, username="admin", password="secret")
-        self.otwarcie_strony_z_kontaktami(wd)
         self.stworzenie_kontaktu(wd, Kontakt(firstname="Anna", lastname="Kwiatek", address="Wiejska 2", home="111222111"))
         self.wylogowanie(wd)
 

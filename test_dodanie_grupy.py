@@ -18,11 +18,8 @@ class test_dodanie_grupy(unittest.TestCase):
     
     def test_dodanie_grupy(self):
         wd = self.wd
-        self.otwarcie_strony_home_page(wd)
         self.logowanie(wd, username="admin", password="secret")
-        self.otwarcie_strony_z_grupami(wd)
         self.stworzenie_grupy(wd, Grupa(name="testowanie", header="testy1", footer="testy2"))
-        self.powrot_na_strone_z_grupami(wd)
         self.wylogowanie(wd)
 
 
