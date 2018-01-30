@@ -7,6 +7,15 @@ class GrupaPomoc:
         wd = self.ap.wd
         wd.find_element_by_link_text("group page").click()
 
+    def usuniecie_pierwszej_grupy(self):
+        wd = self.ap.wd
+        self.otwarcie_strony_z_grupami()
+        # wybieramy pierwsza grupe
+        wd.find_element_by_name("selected[]").click()
+        # usuwamy pierwsza grupe
+        wd.find_element_by_name("delete").click()
+        self.powrot_na_strone_z_grupami()
+
     def stworzenie(self, grupa):
         wd = self.ap.wd
         self.otwarcie_strony_z_grupami()
