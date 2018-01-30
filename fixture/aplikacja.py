@@ -1,5 +1,6 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
 from fixture.sesja import SesjaPomoc
+from fixture.grupa import GrupaPomoc
 
 class Aplikacja:
 
@@ -8,34 +9,8 @@ class Aplikacja:
                             firefox_binary="C:/Program Files/Mozilla Firefox ESR/firefox.exe")
         self.wd.implicitly_wait(60)
         self.sesja = SesjaPomoc(self)
+        self.grupa = GrupaPomoc(self)
 
-
-    def powrot_na_strone_z_grupami(self):
-        wd = self.wd
-        wd.find_element_by_link_text("group page").click()
-
-    def stworzenie_grupy(self, grupa):
-        wd = self.wd
-        self.otwarcie_strony_z_grupami()
-        # wybranie karty dodania grupy
-        wd.find_element_by_name("new").click()
-        # wypełnienie karty z grupa
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(grupa.name)
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(grupa.header)
-        wd.find_element_by_name("group_footer").click()
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(grupa.footer)
-        # potwierdzenie dodania grupy
-        wd.find_element_by_name("submit").click()
-        self.powrot_na_strone_z_grupami()
-
-    def otwarcie_strony_z_grupami(self):
-        wd = self.wd
-        wd.find_element_by_link_text("groups").click()
 
     def otwarcie_strony_home_page(self):
         wd = self.wd

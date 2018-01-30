@@ -13,12 +13,12 @@ def ap(request):
 
 def test_dodanie_grupy(ap):
     ap.sesja.logowanie(username="admin", password="secret")
-    ap.stworzenie_grupy(Grupa(name="testowanie", header="testy1", footer="testy2"))
+    ap.grupa.stworzenie(Grupa(name="testowanie", header="testy1", footer="testy2"))
     ap.sesja.wylogowanie()
 
 
 def test_dodanie_pustej_grupy(ap):
     ap.sesja.logowanie(username="admin", password="secret")
-    ap.stworzenie_grupy(Grupa(name="", header="", footer=""))
+    ap.grupa.stworzenie(Grupa(name="", header="", footer=""))
     ap.sesja.wylogowanie()
 
