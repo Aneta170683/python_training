@@ -27,10 +27,7 @@ class test_dodanie_kontaktu(unittest.TestCase):
 
     def test_dodanie_pustego_kontaktu(self):
         wd = self.wd
-
-        self.otwarcie_strony_home_page(wd)
         self.logowanie(wd, username="admin", password="secret")
-        self.otwarcie_strony_z_kontaktami(wd)
         self.stworzenie_kontaktu(wd, Kontakt(firstname="", lastname="", address="", home=""))
         self.wylogowanie(wd)
 
@@ -38,6 +35,7 @@ class test_dodanie_kontaktu(unittest.TestCase):
         wd.find_element_by_link_text("Logout").click()
 
     def stworzenie_kontaktu(self, wd, Kontakt):
+        self.otwarcie_strony_z_kontaktami(wd)
         # stworzenie kontaktu
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -59,6 +57,7 @@ class test_dodanie_kontaktu(unittest.TestCase):
         wd.find_element_by_link_text("add new").click()
 
     def logowanie(self, wd, username, password):
+        self.otwarcie_strony_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
