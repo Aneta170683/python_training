@@ -17,22 +17,22 @@ class test_dodanie_kontaktu(unittest.TestCase):
         self.wd.implicitly_wait(60)
     
     def test_dodanie_kontaktu(self):
-        wd = self.wd
-        self.logowanie(wd, username="admin", password="secret")
-        self.stworzenie_kontaktu(wd, Kontakt(firstname="Anna", lastname="Kwiatek", address="Wiejska 2", home="111222111"))
-        self.wylogowanie(wd)
+        self.logowanie(username="admin", password="secret")
+        self.stworzenie_kontaktu(Kontakt(firstname="Anna", lastname="Kwiatek", address="Wiejska 2", home="111222111"))
+        self.wylogowanie()
 
     def test_dodanie_pustego_kontaktu(self):
-        wd = self.wd
-        self.logowanie(wd, username="admin", password="secret")
-        self.stworzenie_kontaktu(wd, Kontakt(firstname="", lastname="", address="", home=""))
-        self.wylogowanie(wd)
+        self.logowanie(username="admin", password="secret")
+        self.stworzenie_kontaktu(Kontakt(firstname="", lastname="", address="", home=""))
+        self.wylogowanie()
 
-    def wylogowanie(self, wd):
+    def wylogowanie(self):
+        wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
-    def stworzenie_kontaktu(self, wd, Kontakt):
-        self.otwarcie_strony_z_kontaktami(wd)
+    def stworzenie_kontaktu(self, Kontakt):
+        wd = self.wd
+        self.otwarcie_strony_z_kontaktami()
         # stworzenie kontaktu
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -50,11 +50,13 @@ class test_dodanie_kontaktu(unittest.TestCase):
         # potwierdzenie dodania kontaktu
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-    def otwarcie_strony_z_kontaktami(self, wd):
+    def otwarcie_strony_z_kontaktami(self):
+        wd = self.wd
         wd.find_element_by_link_text("add new").click()
 
-    def logowanie(self, wd, username, password):
-        self.otwarcie_strony_home_page(wd)
+    def logowanie(self, username, password):
+        wd = self.wd
+        self.otwarcie_strony_home_page()
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
@@ -64,7 +66,8 @@ class test_dodanie_kontaktu(unittest.TestCase):
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
 
-    def otwarcie_strony_home_page(self, wd):
+    def otwarcie_strony_home_page(self):
+        wd = self.wd
         wd.get("http://localhost/addressbook/")
 
     def tearDown(self):

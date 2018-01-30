@@ -17,26 +17,27 @@ class test_dodanie_grupy(unittest.TestCase):
         self.wd.implicitly_wait(60)
     
     def test_dodanie_grupy(self):
-        wd = self.wd
-        self.logowanie(wd, username="admin", password="secret")
-        self.stworzenie_grupy(wd, Grupa(name="testowanie", header="testy1", footer="testy2"))
-        self.wylogowanie(wd)
+        self.logowanie(username="admin", password="secret")
+        self.stworzenie_grupy(Grupa(name="testowanie", header="testy1", footer="testy2"))
+        self.wylogowanie()
 
 
     def test_dodanie_pustej_grupy(self):
-        wd = self.wd
-        self.logowanie(wd, username="admin", password="secret")
-        self.stworzenie_grupy(wd, Grupa(name="", header="", footer=""))
-        self.wylogowanie(wd)
+        self.logowanie(username="admin", password="secret")
+        self.stworzenie_grupy(Grupa(name="", header="", footer=""))
+        self.wylogowanie()
 
-    def wylogowanie(self, wd):
+    def wylogowanie(self):
+        wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
-    def powrot_na_strone_z_grupami(self, wd):
+    def powrot_na_strone_z_grupami(self):
+        wd = self.wd
         wd.find_element_by_link_text("group page").click()
 
-    def stworzenie_grupy(self, wd, grupa):
-        self.otwarcie_strony_z_grupami(wd)
+    def stworzenie_grupy(self, grupa):
+        wd = self.wd
+        self.otwarcie_strony_z_grupami()
         # wybranie karty dodania grupy
         wd.find_element_by_name("new").click()
         # wypełnienie karty z grupa
@@ -51,13 +52,15 @@ class test_dodanie_grupy(unittest.TestCase):
         wd.find_element_by_name("group_footer").send_keys(grupa.footer)
         # potwierdzenie dodania grupy
         wd.find_element_by_name("submit").click()
-        self.powrot_na_strone_z_grupami(wd)
+        self.powrot_na_strone_z_grupami()
 
-    def otwarcie_strony_z_grupami(self, wd):
+    def otwarcie_strony_z_grupami(self):
+        wd = self.wd
         wd.find_element_by_link_text("groups").click()
 
-    def logowanie(self, wd, username, password):
-        self.otwarcie_strony_home_page(wd)
+    def logowanie(self, username, password):
+        wd = self.wd
+        self.otwarcie_strony_home_page()
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
@@ -67,7 +70,8 @@ class test_dodanie_grupy(unittest.TestCase):
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
 
-    def otwarcie_strony_home_page(self, wd):
+    def otwarcie_strony_home_page(self):
+        wd = self.wd
         wd.get("http://localhost/addressbook/group.php")
 
     def tearDown(self):
