@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from grupa import Grupa
-from aplikacja import Aplikacja
+from model.grupa import Grupa
+from fixture.aplikacja import Aplikacja
 
 
 @pytest.fixture
@@ -12,13 +12,13 @@ def ap(request):
     return fixture
 
 def test_dodanie_grupy(ap):
-    ap.logowanie(username="admin", password="secret")
+    ap.sesja.logowanie(username="admin", password="secret")
     ap.stworzenie_grupy(Grupa(name="testowanie", header="testy1", footer="testy2"))
-    ap.wylogowanie()
+    ap.sesja.wylogowanie()
 
 
 def test_dodanie_pustej_grupy(ap):
-    ap.logowanie(username="admin", password="secret")
+    ap.sesja.logowanie(username="admin", password="secret")
     ap.stworzenie_grupy(Grupa(name="", header="", footer=""))
-    ap.wylogowanie()
+    ap.sesja.wylogowanie()
 
