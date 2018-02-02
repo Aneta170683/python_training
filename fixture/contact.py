@@ -3,6 +3,27 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
+    def modification_contact(self, middlename, address, email):
+        wd = self.app.wd
+        # select contact
+        wd.find_element_by_name("selected[]").click()
+        # edit contact
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        # middlename
+        wd.find_element_by_name("middlename").click()
+        wd.find_element_by_name("middlename").clear()
+        wd.find_element_by_name("middlename").send_keys(middlename)
+        # address
+        wd.find_element_by_name("address").click()
+        wd.find_element_by_name("address").clear()
+        wd.find_element_by_name("address").send_keys(address)
+        # email
+        wd.find_element_by_name("email").click()
+        wd.find_element_by_name("email").clear()
+        wd.find_element_by_name("email").send_keys(email)
+        # submit modification
+        wd.find_element_by_name("update").clear()
+
     def delete_first_contact(self):
         wd = self.app.wd
         #select first contact
