@@ -22,7 +22,7 @@ class ContactHelper:
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(email)
         # submit modification
-        wd.find_element_by_name("update").clear()
+        wd.find_element_by_name("update").click()
 
     def delete_first_contact(self):
         wd = self.app.wd
