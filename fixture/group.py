@@ -79,7 +79,6 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
 
-
     def count(self):
         wd = self.app.wd
         self.open_groups_page()
