@@ -83,6 +83,11 @@ class ContactHelper:
 
 
 
+    def count(self):
+        wd = self.app.wd
+        self.home_page()
+        return len(wd.find_elements_by_name("selected[]"))
+
 
 
 
