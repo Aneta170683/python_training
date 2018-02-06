@@ -64,7 +64,9 @@ class ContactHelper:
 
     def home_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        if not (wd.current_url.endswith("/addressbook/") and
+                len(wd.find_elements_by_xpath("//div/div[4]/form[2]/input[2]")) > 0):
+            wd.find_element_by_link_text("home").click()
 
     def open_add_new_page(self):
         wd = self.app.wd
@@ -80,7 +82,6 @@ class ContactHelper:
         self.fill_contact_form(new_contact_data)
         # submit modification
         wd.find_element_by_name("update").click()
-
 
 
     def count(self):
