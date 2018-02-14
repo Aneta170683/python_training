@@ -86,13 +86,6 @@ class ContactHelper:
         # submit modification
         wd.find_element_by_name("update").click()
 
-
-    def count(self):
-        wd = self.app.wd
-        self.home_page()
-        return len(wd.find_elements_by_name("selected[]"))
-
-
     def get_contact_list(self):
         wd = self.app.wd
         self.home_page()
@@ -102,6 +95,13 @@ class ContactHelper:
             id = element.find_element_by_name("selected[]").get_attribute("value")
             contacts.append(Contact(firstname=text, lastname=text, id=id))
         return contacts
+
+    def count(self):
+        wd = self.app.wd
+        self.home_page()
+        return len(wd.find_elements_by_name("selected[]"))
+
+
 
 
 
