@@ -109,7 +109,7 @@ class ContactHelper:
             for element in wd.find_elements_by_name("entry"):
                 text = element.find_elements_by_tag_name("td")
                 id = element.find_element_by_name("selected[]").get_attribute("value")
-                self.contact_cache.append(Contact(firstname=text, lastname=text, id=id))
+                self.contact_cache.append(Contact(firstname=text, id=id))
         return list(self.contact_cache)
 
     def count(self):
