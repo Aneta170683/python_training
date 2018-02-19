@@ -90,9 +90,9 @@ class ContactHelper:
     def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.home_page()
-        self.select_contact_by_index(index)
+        #self.select_contact_by_index(index)
         # open modification form
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr["+str(index)+"]/td[8]/a/img").click()
         # fill contact form
         self.fill_contact_form(new_contact_data)
         # submit modification
@@ -107,9 +107,10 @@ class ContactHelper:
             self.home_page()
             self.contact_cache = []
             for element in wd.find_elements_by_name("entry"):
-                text = element.find_elements_by_tag_name("td")
+                cells = element.find_elements_by_tag_name("td")
                 id = element.find_element_by_name("selected[]").get_attribute("value")
-                self.contact_cache.append(Contact(firstname=text, id=id))
+                contact = Contact(firstname=cells[2].text, lastname=cells[1].text, id=id)
+                self.contact_cache.append(contact)
         return list(self.contact_cache)
 
     def count(self):
