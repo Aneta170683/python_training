@@ -64,7 +64,7 @@ class ContactHelper:
         self.change_field_value_contact("title", contact.title)
         self.change_field_value_contact("company", contact.company)
         self.change_field_value_contact("address", contact.address)
-        self.change_field_value_contact("mobile", contact.mobile)
+        self.change_field_value_contact("mobile", contact.mobilephone)
         self.change_field_value_contact("email", contact.email)
 
     def change_field_value_contact(self, field_firstname, text):
