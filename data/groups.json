@@ -1,38 +1,44 @@
 [
   {
-    "name": "",
-    "header": "",
+    "py/object": "model.group.Group",
     "footer": "",
-    "id": null
+    "header": "1",
+    "id": null,
+    "name": ""
   },
   {
-    "name": "namen~%",
-    "header": "header%qc\"",
-    "footer": "footerE5u4^q[o-mP }4 ` Y",
-    "id": null
+    "py/object": "model.group.Group",
+    "footer": "footergld4ogoxuT",
+    "header": "2",
+    "id": null,
+    "name": "names_pp"
   },
   {
-    "name": "nameXA8zJ",
-    "header": "header(bU20x%Islt O",
-    "footer": "footer|SSa1m;m {r^8  ;",
-    "id": null
+    "py/object": "model.group.Group",
+    "footer": "footer=13F",
+    "header": "3",
+    "id": null,
+    "name": "nameFn"
   },
   {
-    "name": "nameu",
-    "header": "header).w+ %2qa",
-    "footer": "footer}N *@0p.pLI",
-    "id": null
+    "py/object": "model.group.Group",
+    "footer": "footer2Pe",
+    "header": "4",
+    "id": null,
+    "name": "name4Q5Xl0"
   },
   {
-    "name": "name?6DA,",
-    "header": "headerY",
-    "footer": "footerfj",
-    "id": null
+    "py/object": "model.group.Group",
+    "footer": "footer",
+    "header": "5",
+    "id": null,
+    "name": "namek6G"
   },
   {
-    "name": "name# :",
-    "header": "headerAD fU",
-    "footer": "footerl0baYk3;w mkgD",
-    "id": null
+    "py/object": "model.group.Group",
+    "footer": "footerN",
+    "header": "6",
+    "id": null,
+    "name": "nameqt"
   }
 ]
