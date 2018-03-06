@@ -116,10 +116,8 @@ class ContactHelper:
     def modify_contact_by_id(self, id, new_contact_data):
         wd = self.app.wd
         self.home_page()
-        #self.select_contact_by_index(index)
         # open modification form
-        self.select_contact_by_id(id)
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr["+str(id)+"]/td[8]/a/img").click()
+        wd.find_element_by_xpath('//a[@href="edit.php?id='+id+'"]').click()
         # fill contact form
         self.fill_contact_form(new_contact_data)
         # submit modification
@@ -196,8 +194,6 @@ class ContactHelper:
         secondaryphone = re.search("P: (.*)", text).group(1)
         return Contact(homephone=homephone,
                        workphone=workphone,mobilephone=mobilephone, secondaryphone=secondaryphone)
-
-
 
 
     def count(self):
