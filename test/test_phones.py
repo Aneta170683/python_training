@@ -26,24 +26,28 @@ def test_all_contacts(app):
         contact_from_edit_page = app.contact.get_contact_info_from_edit_page(i)
         contact_from_view_page = app.contact.get_contact_from_view_page(i)
         contact_db = db.get_contact(contact=c)
+        contact_db.all_phones_from_home_page = merge_phones_like_on_home_page(contact_db)
+        contact_db.all_emails_from_home_page = merge_emails_like_on_home_page(contact_db)
 
-        # do testu z użyciem weryfikacji wstecznej
-        assert contact_from_home_page.all_phones_from_home_page == \
-               merge_phones_like_on_home_page(contact_from_edit_page)
-        assert contact_from_home_page.all_emails_from_home_page == \
-               merge_emails_like_on_home_page(contact_from_edit_page)
-        assert contact_from_home_page.lastname == contact_from_edit_page.lastname
-        assert contact_from_home_page.firstname == contact_from_edit_page.firstname
-        assert contact_from_home_page.address == contact_from_edit_page.address
-        # tutaj asercja z bazki
+        #Home page
         assert contact_from_home_page.lastname == xstr(contact_db.lastname)
         assert contact_from_home_page.firstname == xstr(contact_db.firstname)
         assert contact_from_home_page.address == xstr(contact_db.address)
-        # porównywanie page info
-        assert contact_from_view_page.homephone == contact_from_edit_page.homephone
-        assert contact_from_view_page.workphone == contact_from_edit_page.workphone
-        assert contact_from_view_page.mobilephone == contact_from_edit_page.mobilephone
-        assert contact_from_view_page.secondaryphone == contact_from_edit_page.secondaryphone
+        assert contact_from_home_page.all_phones_from_home_page == contact_db.all_phones_from_home_page
+        assert contact_from_home_page.all_emails_from_home_page == contact_db.all_emails_from_home_page
+        #Edit page
+        assert contact_from_edit_page.lastname == xstr(contact_db.lastname)
+        assert contact_from_edit_page.firstname == xstr(contact_db.firstname)
+        assert contact_from_edit_page.address == xstr(contact_db.address)
+        assert contact_from_edit_page.homephone == xstr(contact_db.homephone)
+        assert contact_from_edit_page.mobilephone == xstr(contact_db.mobilephone)
+        assert contact_from_edit_page.secondaryphone == xstr(contact_db.secondaryphone)
+        assert contact_from_edit_page.workphone == xstr(contact_db.workphone)
+        #Page info
+        assert contact_from_view_page.homephone == xstr(contact_db.homephone)
+        assert contact_from_view_page.workphone == xstr(contact_db.workphone)
+        assert contact_from_view_page.mobilephone == xstr(contact_db.mobilephone)
+        assert contact_from_view_page.secondaryphone == xstr(contact_db.secondaryphone)
         if i < cl-1:
             i += 1
 
